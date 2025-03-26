@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upscaler</title>
+    <link rel="stylesheet" href="../portfolio/ds1/ds1.css" />
+    <link rel="stylesheet" href="resize.css" />
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Upscaler using Lanczos</h1>
+    <div class="app">
+        <input type="file" id="imageinput" accept="image/*" />
+        <br><br>
+        <div id="progressbar" style="display: none">
+        </div> <!--Hide progress bar when resizing not in progress -->
+        <canvas id="canvas"></canvas>
+        <div id="imgdimensions">Loading image dimensions...</div>
+        <br><br><br>
+
+        <div class="slider-container">
+            <input type="range" min="1" max="4" value="2" id="resizeamount">
+            <div class="slider-value" id="sliderValue">2</div>
+        </div>
+        <button class="button" onclick="upscaleImage()">
+        <!-- <span class="shadow"></span> -->
+        <!-- <span class="edge"></span> -->
+        <div class="front">
+            <span>UPSCALE!</span>
+        </div>
+        </button>
+    </div>
+    <div class="talk">
+        <p>
+        Quick and dirty image upscaler using the Lanczos algorithm. Doesn't use WebGL or anything fancy, just pure <span class="code-inline">canvas</span>. Note: this will slow down your 
+        web browser, especially if you try and resize anything over 2K, since canvas does not have hardware acceleration by default. I do not plan on fixing it. I couldn't find anything 
+        like this online for free, so I made it myself.
+    </p>
+        
+    </div>
+    <script src="resize.js"></script>
+</body>
+</html>
