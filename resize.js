@@ -20,7 +20,6 @@ function positionBubble() {
   sliderValue.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
 
-
 // draws image onto canvas (autoupdates)
 document.getElementById('imageinput').addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -62,8 +61,6 @@ function upscaleImage() {
 
     const progressBar = document.getElementById('progressbar');
     progressBar.style.display = 'block';
-
-    const downloadButton = document.getElementById('downloadImage')
 
     const imageData = ctx.getImageData(0, 0, originalWidth, originalHeight);
     const resizedImageData = lanczosResize(imageData, newWidth, newHeight, progressBar);
@@ -126,8 +123,7 @@ function lanczosResize(imageData, newWidth, newHeight, progressBar) {
             dstData.data[dstIdx + 3] = a / weightSum;
         }
 
-        // this does nothing
-        // TODO: fix this
+        // Update the progress bar
         if (y % 10 === 0) {
             progressBar.style.width = `${(y / newHeight) * 100}%`;
         }
@@ -135,3 +131,14 @@ function lanczosResize(imageData, newWidth, newHeight, progressBar) {
 
     return dstData;
 }
+
+// Add event listener to the download button
+document.getElementById('downloadImage').addEventListener('click', function() {
+    const canvas = document.getElementById('canvas');
+    const dataURL = canvas.toDataURL('image/png');
+
+    const a = document.createElement('a');
+    a.href = dataURL;
+    a.download = 'upscaled_image.png';
+    a.click();
+});
