@@ -19,16 +19,19 @@ div {
 }
 
 input[type="file"] {
-  font-family: "Redaction-20";
+  font-family: "Inconsolata";
+  transform: scale(1.2);
+  transform-origin: left;
+  padding: 1em 0;
 }
 
 .footer {
   font-family: "Redaction-20";
-  position: fixed; 
-  bottom: 0.1em; 
+  position: relative; 
+  bottom: 0; 
   left: 0;
   right: 0; 
-  font-size: 0.8rem; 
+  font-size: 0.85rem; 
   opacity: 70%; 
   text-align: center;
 }
