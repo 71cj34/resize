@@ -14,15 +14,14 @@ function positionBubble() {
   const max = slider.max ? parseFloat(slider.max) : 100;
   const newVal = Number(((val - min) * 100) / (max - min));
   
-  // Update the text
   sliderValue.innerHTML = val + "x";
   
-  // Position the bubble
+  // 6 too far
   sliderValue.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
 
 
-
+// draws image onto canvas (autoupdates)
 document.getElementById('imageinput').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
@@ -64,6 +63,8 @@ function upscaleImage() {
     const progressBar = document.getElementById('progressbar');
     progressBar.style.display = 'block';
 
+    const downloadButton = document.getElementById('downloadImage')
+
     const imageData = ctx.getImageData(0, 0, originalWidth, originalHeight);
     const resizedImageData = lanczosResize(imageData, newWidth, newHeight, progressBar);
 
@@ -72,6 +73,7 @@ function upscaleImage() {
     ctx.putImageData(resizedImageData, 0, 0);
 
     document.getElementById('imgdimensions').textContent = `Upscaled Dimensions: ${newWidth} x ${newHeight}`;
+
     progressBar.style.display = 'none';
 }
 
@@ -124,7 +126,8 @@ function lanczosResize(imageData, newWidth, newHeight, progressBar) {
             dstData.data[dstIdx + 3] = a / weightSum;
         }
 
-        // Update progress bar
+        // this does nothing
+        // TODO: fix this
         if (y % 10 === 0) {
             progressBar.style.width = `${(y / newHeight) * 100}%`;
         }
