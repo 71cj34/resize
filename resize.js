@@ -59,22 +59,17 @@ function upscaleImage() {
     const newWidth = originalWidth * scaleFactor;
     const newHeight = originalHeight * scaleFactor;
 
-    const progressBar = document.getElementById('progressbar');
-    progressBar.style.display = 'block';
-
     const imageData = ctx.getImageData(0, 0, originalWidth, originalHeight);
-    const resizedImageData = lanczosResize(imageData, newWidth, newHeight, progressBar);
+    const resizedImageData = lanczosResize(imageData, newWidth, newHeight);
 
     canvas.width = newWidth;
     canvas.height = newHeight;
     ctx.putImageData(resizedImageData, 0, 0);
 
     document.getElementById('imgdimensions').textContent = `Upscaled Dimensions: ${newWidth} x ${newHeight}`;
-
-    progressBar.style.display = 'none';
 }
 
-function lanczosResize(imageData, newWidth, newHeight, progressBar) {
+function lanczosResize(imageData, newWidth, newHeight) {
     const originalWidth = imageData.width;
     const originalHeight = imageData.height;
     const srcData = imageData.data;
@@ -121,11 +116,6 @@ function lanczosResize(imageData, newWidth, newHeight, progressBar) {
             dstData.data[dstIdx + 1] = g / weightSum;
             dstData.data[dstIdx + 2] = b / weightSum;
             dstData.data[dstIdx + 3] = a / weightSum;
-        }
-
-        // Update the progress bar
-        if (y % 10 === 0) {
-            progressBar.style.width = `${(y / newHeight) * 100}%`;
         }
     }
 
