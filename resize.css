@@ -60,7 +60,7 @@ input[type="range"] {
 
 
 button {
-  font-family: 'Input Serif';    
+  font-family: var(--text);    
   font-weight: bold;
 }
 
