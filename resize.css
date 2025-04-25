@@ -1,3 +1,7 @@
+:root {
+  --head: "Inconsolata", monospace; /* header font */
+  --text: "Input Serif", sans-serif;
+}
 
 div {
   margin-bottom: 1vh;
@@ -15,12 +19,12 @@ div {
 }
 
 input[type="file"] {
-  font-family: "Inconsolata";
+  font-family: var(--head);
   transform: scale(1.2);
   transform-origin: left;
   padding: 1em 0;
 }
-
+/* PROBLEM: FONTS ARE DEFINED IN DS1 AND THOSE DONT GET SWITCHED!!! */
 .footer {
   font-family: "Redaction-20";
   position: relative; 
